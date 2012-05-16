@@ -1,7 +1,8 @@
 <?php
 class NerdNiteSignup_Widget extends WP_Widget {
         function NerdNiteSignup_Widget() {
-                $widget_ops = array('classname' => 'NerdNiteSignup', 'description' => 'A sign-up form for the Nerd Nite mailing lists' );
+                $widget_ops = array('classname' => 'NerdNiteSignup', 
+                                    'description' => 'A sign-up form for the Nerd Nite mailing lists' );
                 $this->WP_Widget('NerdNiteSignup', __('Sign up'), $widget_ops);
         }
 
@@ -13,8 +14,27 @@ class NerdNiteSignup_Widget extends WP_Widget {
             $list_name = htmlspecialchars($instance['list_name']);
         
             # Output the options
-echo '<p style="text-align:right;"><label for="' . $this->get_field_name('list_name') . '">' . __('List name:') . ' <input style="width: 150px;" id="'            . $this->get_field_id('list_name') . '" name="' . $this->get_field_name('list_name') . '" type="text" value="' . $list_name . '" /></label></p>';
-            echo '<p style="text-align:right;"><label for="' . $this->get_field_name('list_id')   . '">' . __('List ID:')   . ' <input style="width: 30px;" id="'            . $this->get_field_id('list_id') . '" name="' . $this->get_field_name('list_id')     . '" type="text" value="' . $list_id . '" /></label></p>';
+			echo '<p style="text-align:right;"><label for="' . 
+				$this->get_field_name('list_name') . 
+				'">' . __('List name:') . 
+				' <input style="width: 150px;" id="' . 
+				$this->get_field_id('list_name') . 
+				'" name="' . 
+				$this->get_field_name('list_name') . 
+				'" type="text" value="' . 
+				$list_name . 
+				'" /></label></p>';
+				
+            echo '<p style="text-align:right;"><label for="' . 
+            	$this->get_field_name('list_id')   . 
+            	'">' . __('List ID:')   . 
+            	' <input style="width: 30px;" id="'. 
+            	$this->get_field_id('list_id') . 
+            	'" name="' . 
+            	$this->get_field_name('list_id') . 
+            	'" type="text" value="' . 
+            	$list_id . 
+            	'" /></label></p>';
         }
 
         function update($new_instance, $old_instance) {
@@ -26,23 +46,24 @@ echo '<p style="text-align:right;"><label for="' . $this->get_field_name('list_n
         }
 
         function widget($args, $instance) {
-                extract($args);
-                wp_enqueue_script( 'signup_widget' );
-                wp_enqueue_style( 'signup_widget' );
-                 wp_enqueue_style( 'qtip' );
-                $list_id   = empty($instance['list_id']) ? 0 : $instance['list_id'];
-        $list_name = empty($instance['list_name']) ? 'nerdnite' : $instance['list_name'];
-                // outputs the content of the widget
+        	extract($args);
+            wp_enqueue_script( 'signup_widget' );
+            wp_enqueue_style( 'signup_widget' );
+            wp_enqueue_style( 'qtip' );
+            $list_id   = empty($instance['list_id']) ? 0 : $instance['list_id'];
+        	$list_name = empty($instance['list_name']) ? 'nerdnite' : $instance['list_name'];
+            // outputs the content of the widget
 
-        # Before the widget
-        echo $before_widget;
-         echo $before_title . apply_filters('widget_title', 'Sign up for updates') . $after_title;
-        if($list_id == 0) {
+        	# Before the widget
+        	echo $before_widget;
+         	echo $before_title . apply_filters('widget_title', 'Stay in touch here') . $after_title;
+        	if($list_id == 0) {
                 echo "Waiting for Nerd Nite boss to set up mailing list";
-        }
-        else {
+        	}
+        	else {
         ?>
         <div id='signup-content'>
+        <p>Sign up here for updates about Nerd Nite events in your city.</p>
 <script src="/js/list_subscribe_checker.js" language="Javascript" type="text/javascript"></script>
 <form method=post name="subscribeform" action="http://nerdnite.com/lists/?p=subscribe&id=42" target="nnSignup" onsubmit="window.open('', this.target,
 'dialog,modal,scrollbars=no,resizable=no,width=550,height=300,left=0,top=0');">
@@ -62,22 +83,22 @@ echo '<p style="text-align:right;"><label for="' . $this->get_field_name('list_n
         <script language="Javascript" type="text/javascript">addFieldToCheck("emailconfirm","Confirm your email address");</script>
     </span>
     <input type=hidden name="htmlemail" value="0"/>
-    <div class="required">Would you like to present, some day?</div>
-    <span class="attributeinput">
+    <div class="required">Would you like to present, some day? <span class="attributeinput">
             <!--0--><select name="attribute3" class="attributeinput">
                     <option value="4" >Yes</option>
                     <option value="5" >No</option>
                     <option value="6" selected="selected">Maybe</option>
             </select>
-    </span>
+    </span></div>
+    
     <input type="hidden" name="list[<?php echo $list_id; ?>]" value="signup"/>
     <input type="hidden" name="listname[<?php echo $list_id; ?>]" value="<?php echo $list_name; ?>"/>
     
-<div class="required">Add me to the Global Nerd Nite list</div>
-<div id="global-list-info">more info</div>
-    <span class="attributeinput">
+<div class="required">Add me to the Global Nerd Nite list too:  <span class="attributeinput">
       <input type="checkbox" name="add_to_global" id="add_to_global" checked />
-    </span>
+    </span></div>
+<div id="global-list-info">more info</div>
+   
 		<input class="global-list" type="hidden" name="list[5]" value="signup"/>
     	<input class="global-list" type="hidden" name="listname[5]" value="nerdnite-global"/>  	
     <div style="display:none">
@@ -101,7 +122,7 @@ echo '<p style="text-align:right;"><label for="' . $this->get_field_name('list_n
   		wp_register_script( 'qtip', plugins_url('/jquery.qtip.min.js', __FILE__), array('jquery') );
   		wp_register_script( 'signup_widget', plugins_url('/signup_widget.js', __FILE__), array('jquery', 'qtip'), '1.01' );
   		
-  		wp_register_style( 'signup_widget', plugins_url('/signup_widget.css', __FILE__), array(), '1.02' );
+  		wp_register_style( 'signup_widget', plugins_url('/signup_widget.css', __FILE__), array(), '1.05' );
   		wp_register_style( 'qtip', plugins_url('/jquery.qtip.min.css', __FILE__) );
   	}
 	add_action('widgets_init', 'NerdNiteSignup_Init');

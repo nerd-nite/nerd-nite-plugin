@@ -8,10 +8,20 @@ div#global-list-info {
 	cursor:pointer;
 }
 
-div#signup-content {
-    /*display: none;*/
+li.NerdNiteSignup div#signup-content {
+    display: none;
+	font-size:0.7em;	
 }
 
-li#NerdNiteSignup h2 {
+li.NerdNiteSignup h2.widgettitle {
     cursor: pointer;
+	font-size:1em;
+}
+
+li.NerdNiteSignup h2.widgettitle:hover {
+	background-color: #F5A519;
+}
+
+div.required {
+	padding-top:0.5em;
 }
