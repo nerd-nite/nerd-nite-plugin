@@ -1,0 +1,17 @@
+div.required:after {
+    content: "*";
+    color: red;
+}
+
+div#global-list-info {
+	font-size:smaller;
+	cursor:pointer;
+}
+
+div#signup-content {
+    /*display: none;*/
+}
+
+li#NerdNiteSignup h2 {
+    cursor: pointer;
+}
