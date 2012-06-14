@@ -4,24 +4,24 @@ div.required:after {
 }
 
 div#global-list-info {
-	font-size:smaller;
-	cursor:pointer;
+    font-size: smaller;
+    cursor: pointer;
 }
 
 li.NerdNiteSignup div#signup-content {
     display: none;
-	font-size:0.7em;	
+    font-size: 0.7em;
 }
 
 li.NerdNiteSignup h2.widgettitle {
     cursor: pointer;
-	font-size:1em;
+    font-size: 1em;
 }
 
 li.NerdNiteSignup h2.widgettitle:hover {
-	background-color: #F5A519;
+    background-color: #F5A519;
 }
 
 div.required {
-	padding-top:0.5em;
+    padding-top: 0.5em;
 }
