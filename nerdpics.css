@@ -1,0 +1,27 @@
+.nerdpic {
+    float: left;
+    padding-top: 0.4em;
+    padding-left: .4em;
+    padding-right: .4em;
+    border: solid thin black;
+    margin: .3em;
+    height: 20.3em;
+    width: 18em;
+    background-color:#d7d7d7;
+}
+
+.nerdpic img.photo {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:0em;
+    margin-bottom:0.3em;
+    padding: 0em;
+    width: 17em;
+    height: 17em;
+    display: block;
+}
+
+div.nerd-caption {
+    text-align:center;
+    padding-left:.4em;
+}

@@ -13,4 +13,5 @@ include dirname(__FILE__) . "/signup_widget.php";
 include dirname(__FILE__) . "/create_nerdnite_site.php";
 include dirname(__FILE__) . "/magazine_link.php";
 include dirname(__FILE__) . "/central_content.php";
+include dirname(__FILE__) . "/nerd-gallery.php";
 ?>
