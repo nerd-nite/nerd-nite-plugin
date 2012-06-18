@@ -18,15 +18,7 @@ function handleContactForm($content) {
 
 
 function processContactForm($content) {
-    global $recaptcha_opt;
-
     $errors = array();
-
-    // Check the reCAPTCHA first, to prevent username sniffing
-    $response = recaptcha_check_answer('6LcAUQYAAAAAAM6FS1ZdvTs8wHjMGvAVPSheQg6N',
-                                       $_SERVER['REMOTE_ADDR'],
-                                       $_POST['recaptcha_challenge_field'],
-                                       $_POST['recaptcha_response_field']);
 
     // Check the email address
     $emailAddress = trim($_POST['emailAddress']);
@@ -36,20 +28,16 @@ function processContactForm($content) {
 
 
     // Check that we have some sort of name
-
     $realname = strtolower(trim($_POST['realname']));
     if (strlen($realname) == 0) {
         $errors['realname'] = "Please provide your name";
     }
 
-
     // Check that we have some sort of subject
-
     $subject = strtolower(trim($_POST['subject']));
     if (strlen($subject) == 0) {
         $errors['subject'] = "Please provide a subject";
     }
-
 
     // Check that we have a message
     $message = strtolower(trim($_POST['message']));
@@ -57,17 +45,7 @@ function processContactForm($content) {
         $errors['message'] = "Please provide a message";
     }
 
-    $errors['recaptcha'] = 'OK';
-
-    if (!$response->is_valid) {
-        $errors['recaptcha'] = $response->error;
-        return showContactCForm($content, $errors, $_POST);
-    }
-
-    /*
-     * Need to fix the fact that $errors['recaptcha'] is always defined
-     */
-    if ((count($errors) > 0) && ($errors['recaptcha'] != "OK")) {
+    if (count($errors) > 0) {
         return showContactCForm($content, $errors, $_POST);
     } else {
         $city = explode('.', $_SERVER['SERVER_NAME']);
@@ -81,13 +59,10 @@ function processContactForm($content) {
 
 
 function showContactCForm($content, $errors = array(), $values = array()) {
-    global $recaptcha_opt;
 
     if (strlen($values['emailAddress']) > 0) {
         $values['emailAddress'] = '[nohide]' . $values['emailAddress'] . '[/nohide]';
     }
-
-    $recaptchaHTML = recaptcha_get_html('6LcAUQYAAAAAAHFnarAkNcKixfesnSTHTirV0nnD', $errors['recaptcha']);
 
     $form = <<<FORM
 	<form method="post" action="$_SERVER[REQUEST_URI]" enctype="multipart/form-data" id="startCampForm">
@@ -105,16 +80,11 @@ function showContactCForm($content, $errors = array(), $values = array()) {
         	<legend>Your Message</legend>
             <span class="error">$errors[message]</span><br />
             <label for="message">Message<span class="required">*</span></label><textarea name="message" id="message" cols="40" rows="10">$values[message]</textarea><br />
-        </fieldset>
-
-        <fieldset>
-            <legend>Registration</legend>
-            <p>Like you, we hate spam. Please fill in this CAPTCHA field, to prove you are a human:</p>
-                $recaptchaHTML
             <input type="hidden" name="action" value="contact"/>
             <input name="formSubmit" type="submit" id="formSubmit" value="Send message" />
         </fieldset>
     </form>
+
 FORM;
 
     return str_replace("[contact]", $form, $content);
@@ -152,4 +122,3 @@ add_action('wp_head', 'pdcSACFormStyling');
 
 
 ?>
-
