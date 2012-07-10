@@ -16,8 +16,8 @@
     margin-top:0em;
     margin-bottom:0.3em;
     padding: 0em;
-    width: 17em;
-    height: 17em;
+    max-width: 17em;
+    max-height: 17em;
     display: block;
 }
 
