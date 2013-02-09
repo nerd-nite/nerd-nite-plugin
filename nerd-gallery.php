@@ -37,31 +37,15 @@ function generateNerdGallery($content) {
             if($cityObject->userblog_id == 1) {
                 continue;
             }
-            elseif(!isset($city)) {
-                if(preg_match("/[nN]erd [nN]ite (.*)/", $cityObject->blogname,$cityMatch)) {
-                    $city = trim($cityMatch[1]);
+            else{
+                $cityName = getCityName($cityObject);
+                if(isset($city)) {
+                    $city ="$city & $cityName";
                 }
                 else {
-                    $city = $cityObject->blogname;
+                    $city = $cityName;
                 }
             }
-            else {
-                $city = "Too Many Cities";
-            }
-        }
-
-        switch($city) {
-            case "SF":
-                $city = "San Francisco";
-                break;
-            case "NOLA":
-                $city = "New Orleans";
-                break;
-            case "nyc":
-                $city = "New York";
-                break;
-            default:
-                break;
         }
 
         $boss_name = (isset($boss->display_name)?$boss->display_name:$boss->user_login);
@@ -88,6 +72,32 @@ function generateNerdGallery($content) {
 function addBossInfoQVar( $qvars ) {
     $qvars[] = NN_BOSS_Q_VAR ;
     return $qvars;
+}
+
+function getCityName($cityObject) {
+    $city = "";
+    if(preg_match("/[nN]erd [nN]ite (.*)/", $cityObject->blogname,$cityMatch)) {
+        $city = trim($cityMatch[1]);
+    }
+    else {
+        $city = $cityObject->blogname;
+    }
+
+    switch($city) {
+        case "SF":
+            $city = "San Francisco";
+            break;
+        case "NOLA":
+            $city = "New Orleans";
+            break;
+        case "nyc":
+            $city = "New York";
+            break;
+        default:
+            break;
+    }
+
+    return $city;
 }
 
 ?>
