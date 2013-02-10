@@ -1,8 +1,13 @@
 <?php
 add_filter('the_content', 'insertNerdGallery');
 add_filter('query_vars', 'addBossInfoQVar' );
+add_action('wp_enqueue_scripts', 'register_styles_and_scripts');
 
-wp_register_style('signup_widget', plugins_url('/nerdpics.css', __FILE__), array(), '1.04');
+function register_styles_and_scripts() {
+    wp_register_style('nerd-gallery', plugins_url('/nerdpics.css', __FILE__), array(), '1.04');
+    wp_enqueue_style( 'nerd-gallery' );
+}
+
 define("NN_BOSS_Q_VAR", 'bossInfo');
 
 function insertNerdGallery($content) {
@@ -39,11 +44,13 @@ function generateNerdGallery($content) {
             }
             else{
                 $cityName = getCityName($cityObject);
-                if(isset($city)) {
-                    $city ="$city & $cityName";
-                }
-                else {
-                    $city = $cityName;
+                if(! isHiddenCity($cityName)) {
+                    if(isset($city)) {
+                        $city ="$city & $cityName";
+                    }
+                    else {
+                        $city = $cityName;
+                    }
                 }
             }
         }
@@ -72,6 +79,10 @@ function generateNerdGallery($content) {
 function addBossInfoQVar( $qvars ) {
     $qvars[] = NN_BOSS_Q_VAR ;
     return $qvars;
+}
+
+function isHiddenCity($cityName) {
+    return $cityName != "Aimeeville";
 }
 
 function getCityName($cityObject) {

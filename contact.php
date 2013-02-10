@@ -1,5 +1,5 @@
 <?php
-require_once (ABSPATH . WPINC . '/registration.php');
+require_once (ABSPATH . WPINC . '/user.php');
 
 add_filter('the_content', 'handleContactForm');
 
