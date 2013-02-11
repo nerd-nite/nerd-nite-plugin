@@ -1,27 +1,31 @@
+#nerd-gallery {
+    width: 660px;
+}
+
 .nerdpic {
     float: left;
-    padding-top: 0.4em;
-    padding-left: .4em;
-    padding-right: .4em;
+    padding-top:   4px;
+    padding-left:  4px;
+    padding-right: 4px;
     border: solid thin black;
-    margin: .3em;
-    height: 20.3em;
-    width: 18em;
-    background-color:#d7d7d7;
+    margin:   3.5px;
+    height: 255px;
+    width:  203px;
+    background-color: #d7d7d7;
 }
 
 .nerdpic img.photo {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top:0em;
-    margin-bottom:0.3em;
-    padding: 0em;
-    max-width: 17em;
-    max-height: 17em;
+    margin-left:   auto;
+    margin-right:  auto;
+    margin-top:    0px;
+    margin-bottom: 3.6px;
+    padding: 0px;
+    width: 200px;
+    height: 200px;
     display: block;
 }
 
 div.nerd-caption {
     text-align:center;
-    padding-left:.4em;
+    padding-left:1px;
 }

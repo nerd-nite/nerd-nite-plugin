@@ -24,11 +24,12 @@ function generateNerdGallery($content) {
     if (isset($wp_query->query_vars[NN_BOSS_Q_VAR])) {
         $soughtBoss = $wp_query->query_vars[NN_BOSS_Q_VAR];
     }
+    $content = '<div id="nerd-gallery">';
 
     /**
      * Add chris manually
      */
-    $content =userphoto__get_userphoto(6,
+    $content .= userphoto__get_userphoto(6,
                                         USERPHOTO_FULL_SIZE ,
                                         "<div class='nerdpic' >",
                                         "<div class='nerd-caption'>Chris Balakrishnan<br/>Nerd Nite Founder</div></div>","","");
@@ -73,7 +74,8 @@ function generateNerdGallery($content) {
                              "<div class='nerd-caption'>Dan Rumney<br/> Webmaster and Podcaster</div></div>","","");
 
 
-    return "The nerd gallery is undergoing repairs at the moment. Please watch this space!\n".$content;
+    $content .= '</div>';
+    return $content;
 }
 
 function addBossInfoQVar( $qvars ) {
@@ -82,7 +84,7 @@ function addBossInfoQVar( $qvars ) {
 }
 
 function isHiddenCity($cityName) {
-    return $cityName != "Aimeeville";
+    return $cityName == "Aimeeville";
 }
 
 function getCityName($cityObject) {
