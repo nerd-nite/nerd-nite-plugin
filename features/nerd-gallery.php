@@ -19,7 +19,7 @@ function insertNerdGallery($content) {
     }
 }
 
-function generateNerdGallery($content) {
+function generateNerdGallery() {
     global $wp_query;
     if (isset($wp_query->query_vars[NN_BOSS_Q_VAR])) {
         $soughtBoss = $wp_query->query_vars[NN_BOSS_Q_VAR];

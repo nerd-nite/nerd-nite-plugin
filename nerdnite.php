@@ -1,17 +1,16 @@
 <?php
-/* Plugin Name: nerdnite
-Plugin URI: http://www.danrumney.co.uk	
-Description:  A plugin adding nerdnite functions
-Plugin Version: 1.01
-Plugin Author: Dan Rumney
-Author URI: http://www.danrumney.co.uk
+defined('ABSPATH') or die("Direct access not supported!");
+/**
+ * Plugin Name: nerdnite
+ * Plugin URI: http://www.danrumney.com
+ * Description:  A plugin adding nerdnite functions
+ * Version: 2.0
+ * Author: Dan Rumney
+ * Author URI: http://www.danrumney.com
+ * License: GPL2
  */
 
-include dirname(__FILE__) . "/contact.php";
-include dirname(__FILE__) . "/autolink.php";
-include dirname(__FILE__) . "/signup_widget.php";
-include dirname(__FILE__) . "/create_nerdnite_site.php";
-include dirname(__FILE__) . "/magazine_link.php";
-include dirname(__FILE__) . "/central_content.php";
-include dirname(__FILE__) . "/nerd-gallery.php";
+foreach ( glob( plugin_dir_path( __FILE__ ) . "features/*.php" ) as $file ) {
+    include_once $file;
+}
 ?>

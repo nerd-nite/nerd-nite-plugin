@@ -6,6 +6,8 @@ class NerdNiteSignup_Widget extends WP_Widget {
         $this->WP_Widget('NerdNiteSignup', __('Sign up'), $widget_ops);
     }
 
+
+
     function form($instance) {
         //Defaults
         $instance = wp_parse_args((array)$instance, array('list_id' => '0', 'list_name' => ''));
