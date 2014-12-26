@@ -18,7 +18,15 @@ class NerdNiteCityList_Widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
-		// outputs the content of the widget
+		echo $args['before_widget'];
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
+		}
+		?>
+		<div>Widget content goes here</div>.
+
+		<?php
+		echo $args['after_widget'];
 	}
 
 	/**
