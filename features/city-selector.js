@@ -4,4 +4,4 @@ selector.chosen({
     });
 
 
-selector.closest('.Block').style('z-index', '1');
+selector.closest('.Block').css('z-index', '1');
