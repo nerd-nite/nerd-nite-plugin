@@ -26,7 +26,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 		$cities = wp_get_sites();
 		?>
 		<div><em>Coming Soon:</em> Find the nearest Nerd Nite to you</div>
-		<select id="nerdnite-city-selector">
+		<select id="nerdnite-city-selector" data-placeholder="Choose a city...">
 			<?php
 				foreach ($cities as $city) {
 					$blog_details = get_blog_details($city[blog_id]);
