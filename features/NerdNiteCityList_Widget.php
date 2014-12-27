@@ -20,7 +20,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 	public function widget( $args, $instance ) {
 		wp_enqueue_script('city-selector');
 		wp_enqueue_style('nn-menu-lib');
-		wp_enqueue_scripts('city-selector');
+		wp_enqueue_style('city-selector');
 
 		echo $args['before_widget'];
 		echo $args['before_title'] . 'Nerd Nite Cities'. $args['after_title'];
