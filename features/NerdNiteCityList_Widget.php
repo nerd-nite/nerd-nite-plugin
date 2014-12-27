@@ -70,7 +70,9 @@ class NerdNiteCityList_Widget extends WP_Widget {
 
 function NerdNiteCityList_Init() {
 	register_widget('NerdNiteCityList_Widget');
-	wp_register_script('selectator', plugins_url('/features/selectator/fm.selectator.jquery.js', __FILE__), array('jquery'));
+	wp_register_script('selectator', plugins_url('features/selectator/fm.selectator.jquery.js', __FILE__), array('jquery'));
+	wp_register_script('city-selector', plugins_url('features/city-selector.js', __FILE__), array('jquery', 'selectator'), '2.00');
+
 
 }
 
