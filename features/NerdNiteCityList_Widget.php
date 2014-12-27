@@ -18,7 +18,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
-		wp_enqueue_script('signup_widget');
+		wp_enqueue_script('city-selector');
 		echo $args['before_widget'];
 		echo $args['before_title'] . 'Nerd Nite Cities'. $args['after_title'];
 		$cities = wp_get_sites();
@@ -71,8 +71,8 @@ class NerdNiteCityList_Widget extends WP_Widget {
 
 function NerdNiteCityList_Init() {
 	register_widget('NerdNiteCityList_Widget');
-	wp_register_script('selectator', plugins_url('features/selectator/fm.selectator.jquery.js', __FILE__), array('jquery'));
-	wp_register_script('city-selector', plugins_url('features/city-selector.js', __FILE__), array('jquery', 'selectator'), '2.00');
+	wp_register_script('selectator', plugins_url('selectator/fm.selectator.jquery.js', __FILE__), array('jquery'));
+	wp_register_script('city-selector', plugins_url('city-selector.js', __FILE__), array('jquery', 'selectator'), '2.00');
 
 
 }
