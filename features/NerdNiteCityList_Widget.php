@@ -28,21 +28,30 @@ class NerdNiteCityList_Widget extends WP_Widget {
 		?>
 		<div><em>Coming Soon:</em> Find the nearest Nerd Nite to you</div>
 		<select id="nerdnite-city-selector" data-placeholder="Choose a city...">
+			<option value="""></option>
 			<?php
+				$cityList = array();
 				foreach ($cities as $city) {
 					$blog_details = get_blog_details($city[blog_id]);
 					if (preg_match("/.*Test.*/i", $blog_details->blogname)) {
 						continue;
 					} elseif (preg_match("/^[Nn]erd [Nn]ite (.*)$/", $blog_details->blogname, $matches)) {
-						$city_name = $matches[1];
+						$city_name = ucfirst($matches[1]);
 						if(in_array($city_name, ["Template","Aimeeville", "Podcast"])) {
 							continue;
 						}
 						if($blog_details->public != "1") {
 							continue;
 						}
-						echo "<option value='$city[domain]'>$city_name</option>";
+						array_push($cityList,array("domain" => $city[domain], "name" => $city_name));
 					}
+				}
+				function citySort($a, $b) {
+					return strnatcmp($a['name'], $b['name']);
+				}
+				usort($cityList, "citySort");
+				foreach($cityList as $city) {
+					echo "<option value='$city[domain]'>$city[name]</option>";
 				}
 			?>
 		</select>
