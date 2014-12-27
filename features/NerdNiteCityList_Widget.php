@@ -18,6 +18,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 	 * @param array $instance
 	 */
 	public function widget( $args, $instance ) {
+		wp_enqueue_script('signup_widget');
 		echo $args['before_widget'];
 		echo $args['before_title'] . 'Nerd Nite Cities'. $args['after_title'];
 		$cities = wp_get_sites();
