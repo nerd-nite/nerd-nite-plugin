@@ -8,6 +8,8 @@ Author: Dan Rumney
 Author URI: http://danrumney.com
 License: GPLv2 or later
 */
+const GOOGLE_MAPS_V3_API_KEY = 'AIzaSyBYrgCehrswg4kbfjc9IOo-o2SIkmKKAYs';
+
 add_action('wp_dashboard_setup', array('NerdNite_City_Dashboard_Widget','init') );
 
 class NerdNite_City_Dashboard_Widget {
@@ -28,12 +30,18 @@ class NerdNite_City_Dashboard_Widget {
             array('NerdNite_City_Dashboard_Widget','widget'),      //Callback for the main widget content
             array('NerdNite_City_Dashboard_Widget','config')       //Optional callback for widget configuration content
         );
+
+        wp_register_style('nn-city-dashboard', plugins_url('/dashboard/city-dashboard.css', __FILE__), array());
+        wp_register_script('googlemaps', '//maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_V3_API_KEY . '&sensor=false', false, '3');
+        wp_register_script('nn-city-dashboard', plugins_url('/dashboard/city-dashboard.js', __FILE__), array('jquery', 'googlemaps'), '2.1');
     }
 
     /**
      * Load the widget code
      */
     public static function widget() {
+        wp_enqueue_style('nn-city-dashboard');
+        wp_enqueue_script('nn-city-dashboard');
         require_once( 'dashboard/widget.php' );
     }
 
@@ -43,6 +51,8 @@ class NerdNite_City_Dashboard_Widget {
      * This is what will display when an admin clicks
      */
     public static function config() {
+        wp_enqueue_style('nn-city-dashboard');
+        wp_enqueue_script('nn-city-dashboard');
         require_once( 'dashboard/widget-config.php' );
     }
 }

@@ -1,0 +1,16 @@
+#nn-city-details-dashboard-bosses {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 0;
+}
+
+#nn-city-details-dashboard table tr th {
+    vertical-align: top;
+    padding-right: 10px;
+    text-align: left;
+}
+
+#nn-city-map-canvas {
+    height: 250px;
+    width: 100%;
+}
