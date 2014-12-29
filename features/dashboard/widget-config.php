@@ -21,6 +21,9 @@
     Latitude: <input type="text" name="latitude" id="nn-city-dashboard-lat" readonly><br/>
     Longitude: <input type="text" name="longitude" id="nn-city-dashboard-lng" readonly>
 
+    <p>Location is identified as <span id="location-id">{uknown}</span>.</p>
+<p>Don't worry if this isn't quite right; there will be the option to change it later and it won't be exposed to anyone until then</p>
+
     <div id="nn-city-map-canvas"></div>
 
 

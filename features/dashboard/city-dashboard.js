@@ -1,6 +1,7 @@
 /* global cityLocation:false; */
 (function() {
     var locationMarker;
+    var geocoder;
     function locationIsSet() {
         return cityLocation.lat !== 0 && cityLocation.lng !== 0;
     }
@@ -14,10 +15,22 @@
         locationMarker.setPosition(location);
         jQuery('#nn-city-dashboard-lat').val(location.lat());
         jQuery('#nn-city-dashboard-lng').val(location.lng());
+        geocoder.geocode({latLng: location}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+locality = _.find(results,function(a) {  return _.contains(a.types, 'locality')});
+        if (locality) {
+		jQuery('#location-id').text(locality.formatted_address);	
+        }
+      } else {
+        alert("Geocoder failed due to: " + status);
+      }
+
+	});
     }
 
 
     google.maps.event.addDomListener(window, 'load', function initialize() {
+        geocoder = new google.maps.Geocoder();
         var mapOptions = {
             center: cityLocation,
             zoom: locationIsSet() ? 7 : 2
