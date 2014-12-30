@@ -16,16 +16,15 @@
         jQuery('#nn-city-dashboard-lat').val(location.lat());
         jQuery('#nn-city-dashboard-lng').val(location.lng());
         geocoder.geocode({latLng: location}, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-locality = _.find(results,function(a) {  return _.contains(a.types, 'locality')});
-        if (locality) {
-		jQuery('#location-id').text(locality.formatted_address);	
-        }
-      } else {
-        alert("Geocoder failed due to: " + status);
-      }
-
-	});
+            if (status == google.maps.GeocoderStatus.OK) {
+                locality = _.find(results,function(a) {  return _.contains(a.types, 'locality')});
+                if (locality) {
+                    jQuery('#location-id').text(locality.formatted_address);
+                } else {
+                    alert("Geocoder failed due to: " + status);
+                }
+            }
+        });
     }
 
 

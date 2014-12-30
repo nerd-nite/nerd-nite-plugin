@@ -7,7 +7,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 		parent::__construct(
 			'NerdNiteCityList', // Base ID
 			__( 'Nerd Nite Cities', 'text_domain' ), // Name
-			array( 'description' => __( 'A list of all of the Nerd Nite Cities', 'text_domain' ), ) // Args
+			array( 'description' => __( 'A list of all of the Nerd Nite Cities. Only nerdnite.com should use this', 'text_domain' ), ) // Args
 		);
 	}
 
