@@ -40,7 +40,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 						if(in_array($city_name, ["Template","Aimeeville", "Podcast"])) {
 							continue;
 						}
-						if($blog_details->public != "1") {
+						if($city['public'] != "1" || $city['archived'] == "1" || $city['deleted'] == "1") {
 							continue;
 						}
 						array_push($cityList,array("domain" => $city[domain], "name" => $city_name));

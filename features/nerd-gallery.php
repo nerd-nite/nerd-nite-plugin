@@ -45,7 +45,7 @@ function generateNerdGallery() {
             }
             else{
                 $cityName = getCityName($cityObject);
-                if(! isHiddenCity($cityName)) {
+                if(! isHiddenCity($cityObject)) {
                     if(isset($city)) {
                         $city ="$city & $cityName";
                     }
@@ -83,8 +83,8 @@ function addBossInfoQVar( $qvars ) {
     return $qvars;
 }
 
-function isHiddenCity($cityName) {
-    return $cityName == "Aimeeville";
+function isHiddenCity($city) {
+    return getCityName($cityName) == "Aimeeville" || $city->public == 0 || $city->archived == 1 || $city->deleted ==1;
 }
 
 function getCityName($cityObject) {
