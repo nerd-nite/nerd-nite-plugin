@@ -6,6 +6,10 @@
     restore_current_blog();
 
     $location = get_option('city_location');
+    if(json_decode(city_location) == NULL ) {
+        $location = false;
+        delete_option('city_location');
+	}
 
 ?>
 <div id="nn-city-details-dashboard">
