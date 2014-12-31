@@ -7,7 +7,7 @@
     error_log(print_r($_POST,true));
 
     if(isset($_POST['latitude']) && isset($_POST['longitude'])) {
-        $location = "{ lat: $_POST[latitude], lng: $_POST[longitude] }";
+        $location = "{ \"lat\": $_POST[latitude], \"lng\": $_POST[longitude] }";
         error_log($location);
         update_option('city_location', $location);
     }

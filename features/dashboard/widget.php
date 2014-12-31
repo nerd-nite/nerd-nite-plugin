@@ -6,7 +6,8 @@
     restore_current_blog();
 
     $location = get_option('city_location');
-    if(json_decode(city_location) == NULL ) {
+    $location =  str_replace(array('lat:','lng:'), array('"lat":', '"lng":'), $location);
+    if(json_decode($location) == NULL ) {
         $location = false;
         delete_option('city_location');
 	}
