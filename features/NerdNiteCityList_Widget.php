@@ -26,7 +26,6 @@ class NerdNiteCityList_Widget extends WP_Widget {
 		echo $args['before_title'] . 'Nerd Nite Cities'. $args['after_title'];
 		$cities = wp_get_sites();
 		?>
-		<div><em>Coming Soon:</em> Find the nearest Nerd Nite to you</div>
 		<select id="nerdnite-city-selector" data-placeholder="Choose a city...">
 			<option value="""></option>
 			<?php
