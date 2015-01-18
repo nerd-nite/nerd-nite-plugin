@@ -1,6 +1,7 @@
 #nn-city-map-display {
     cursor: pointer;
     font-size: xx-small;
+    float: right;
 }
 
 #nn-map-of-cities-dialog {
