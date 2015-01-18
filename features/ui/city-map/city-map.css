@@ -1,0 +1,15 @@
+#nn-city-map-display {
+    cursor: pointer;
+    font-size: xx-small;
+}
+
+#nn-map-of-cities-dialog {
+    display: none;
+    width: 750px;
+    height: 550px;
+}
+#nn-map-of-cities {
+    width: 700px;
+    height: 500px;
+    padding: 25px;
+}
