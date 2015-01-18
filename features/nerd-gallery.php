@@ -84,7 +84,7 @@ function addBossInfoQVar( $qvars ) {
 }
 
 function isHiddenCity($city) {
-    return getCityName($cityName) == "Aimeeville" || $city->archived == 1 || $city->deleted ==1;
+    return getCityName($city) == "Aimeeville" || $city->archived == 1 || $city->deleted ==1;
 }
 
 function getCityName($cityObject) {
