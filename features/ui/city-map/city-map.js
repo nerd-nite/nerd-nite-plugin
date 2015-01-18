@@ -1,6 +1,5 @@
 jQuery(jQuery("#nn-city-map-display").click(function() {
     "use strict";
-    console.log("Opening Map");
     jQuery('#nn-map-of-cities').dialog({
         modal: true,width:800, height:500
     });
@@ -17,7 +16,6 @@ jQuery(jQuery("#nn-city-map-display").click(function() {
         mapOptions);
 
     jQuery.getJSON('/nn-api/cities', function(response) {
-        console.log(response);
         jQuery.each(response.cities, function(__, city) {
             var location = city.location;
 
