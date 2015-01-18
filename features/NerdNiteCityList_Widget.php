@@ -19,7 +19,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 	 */
 	public function widget( $args, $instance ) {
 		wp_enqueue_script('city-selector');
-		wp_enqueue_script('jquery-ui-dialog');
+		wp_enqueue_script('city-map');
 		wp_enqueue_style('nn-menu-lib');
 		wp_enqueue_style('city-selector');
 		wp_enqueue_style('jquery-ui-lightness');
@@ -56,6 +56,7 @@ class NerdNiteCityList_Widget extends WP_Widget {
 				}
 			?>
 		</select>
+		<span id="nn-city-map-display">&middot;</span>
 
 		<?php
 		echo $args['after_widget'];
@@ -84,14 +85,13 @@ class NerdNiteCityList_Widget extends WP_Widget {
 
 function NerdNiteCityList_Init() {
 	register_widget('NerdNiteCityList_Widget');
-	wp_register_script('nn-menu-lib', plugins_url('/chosen/chosen.jquery.min.js', __FILE__), array('jquery'));
-	wp_register_script('city-selector', plugins_url('/city-selector.js', __FILE__), array('jquery', 'nn-menu-lib'), '2.00');
+	wp_register_script('nn-menu-lib', plugins_url('/ui/chosen/chosen.jquery.min.js', __FILE__), array('jquery'));
+	wp_register_script('city-selector', plugins_url('/ui/city-selector/city-selector.js', __FILE__), array('jquery', 'nn-menu-lib'), '2.00');
+	wp_register_script('city-map', plugins_url('/ui/city-map/city-map.js', __FILE__), array('jquery-ui-dialog'), '1.00');
 
-	wp_register_style('nn-menu-lib', plugins_url('/chosen/chosen.min.css', __FILE__), array());
-	wp_register_style('city-selector', plugins_url('/city-selector.css', __FILE__), array());
+	wp_register_style('nn-menu-lib', plugins_url('/ui/chosen/chosen.min.css', __FILE__), array());
+	wp_register_style('city-selector', plugins_url('/ui/city-selector/city-selector.css', __FILE__), array());
 	wp_register_style('jquery-ui-lightness', '//code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css', array());
-
-
 
 }
 
