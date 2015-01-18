@@ -104,7 +104,7 @@ function NerdNiteCityList_Init() {
 	wp_register_script('city-selector', plugins_url('/ui/city-selector/city-selector.js', __FILE__), array('jquery', 'nn-menu-lib'), '2.00');
 	wp_register_script('googlemaps', '//maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_V3_API_KEY . '&sensor=false', false, '3');
 	wp_register_script('city-map', plugins_url('/ui/city-map/city-map.js', __FILE__),
-		array('jquery-ui-dialog', 'googlemaps'), '1.00');
+		array('jquery-ui-dialog', 'googlemaps'), '1.01');
 
 	wp_register_style('nn-menu-lib', plugins_url('/ui/chosen/chosen.min.css', __FILE__), array());
 	wp_register_style('city-selector', plugins_url('/ui/city-selector/city-selector.css', __FILE__), array());
