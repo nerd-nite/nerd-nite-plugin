@@ -48,7 +48,7 @@ class NerdNiteSignup_Widget extends WP_Widget {
         <div id='signup-content'>
             <p>Sign up here for updates about Nerd Nite events in your city.</p>
             <script src="/js/list_subscribe_checker.js" language="Javascript" type="text/javascript"></script>
-            <form method=post name="subscribeform" action="http://nerdnite.com/lists/?p=subscribe&id=42"
+            <form method=post name="subscribeform" action="//nerdnite.com/lists/?p=subscribe&id=42"
                   target="nnSignup" onsubmit="window.open('', this.target,
 'dialog,modal,scrollbars=no,resizable=no,width=550,height=300,left=0,top=0');">
                 <div class="required">Name</div>
