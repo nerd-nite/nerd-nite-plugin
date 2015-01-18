@@ -29,41 +29,40 @@ class NerdNiteCityList_Widget extends WP_Widget {
 		echo $args['before_title'] . 'Nerd Nite Cities'. $args['after_title'];
 		$cities = wp_get_sites();
 		?>
-		<select id="nerdnite-city-selector" data-placeholder="Choose a city...">
-			<option value="""></option>
-			<?php
-				$cityList = array();
-				foreach ($cities as $city) {
-					$blog_details = get_blog_details($city[blog_id]);
-					if (preg_match("/.*Test.*/i", $blog_details->blogname)) {
-						continue;
-					} elseif (preg_match("/^[Nn]erd [Nn]ite (.*)$/", $blog_details->blogname, $matches)) {
-						$city_name = ucfirst($matches[1]);
-						if(in_array($city_name, ["Template","Aimeeville", "Podcast"])) {
+		<div id="nn-cities-widget">
+			<select id="nerdnite-city-selector" data-placeholder="Choose a city...">
+				<option value=""></option>
+				<?php
+					$cityList = array();
+					foreach ($cities as $city) {
+						$blog_details = get_blog_details($city[blog_id]);
+						if (preg_match("/.*Test.*/i", $blog_details->blogname)) {
 							continue;
+						} elseif (preg_match("/^[Nn]erd [Nn]ite (.*)$/", $blog_details->blogname, $matches)) {
+							$city_name = ucfirst($matches[1]);
+							if(in_array($city_name, ["Template","Aimeeville", "Podcast"])) {
+								continue;
+							}
+							if($city['public'] != "1" || $city['archived'] == "1" || $city['deleted'] == "1") {
+								continue;
+							}
+							array_push($cityList,array("domain" => $city[domain], "name" => $city_name));
 						}
-						if($city['public'] != "1" || $city['archived'] == "1" || $city['deleted'] == "1") {
-							continue;
-						}
-						array_push($cityList,array("domain" => $city[domain], "name" => $city_name));
 					}
-				}
-				function citySort($a, $b) {
-					return strnatcmp($a['name'], $b['name']);
-				}
-				usort($cityList, "citySort");
-				foreach($cityList as $city) {
-					echo "<option value='$city[domain]'>$city[name]</option>";
-				}
-			?>
-		</select>
-		<span id="nn-city-map-display">map</span>
+					function citySort($a, $b) {
+						return strnatcmp($a['name'], $b['name']);
+					}
+					usort($cityList, "citySort");
+					foreach($cityList as $city) {
+						echo "<option value='$city[domain]'>$city[name]</option>";
+					}
+				?>
+			</select>
+			<div id="nn-city-map-display">map</div>
 
-		<style>
-
-		</style>
-		<div id="nn-map-of-cities-dialog">
-			<div id="nn-map-of-cities"></div>
+			<div id="nn-map-of-cities-dialog">
+				<div id="nn-map-of-cities"></div>
+			</div>
 		</div>
 		<?php
 		echo $args['after_widget'];
