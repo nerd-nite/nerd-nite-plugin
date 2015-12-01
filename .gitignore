@@ -6,3 +6,5 @@
 error_log
 
 npm.log
+
+bower_components/
