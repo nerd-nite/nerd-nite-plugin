@@ -25,7 +25,7 @@ function buildCityResponseObject($city)
         $users = get_users(array('blog_id' => $blogId));
         $cityBosses = array();
         foreach ($users as $user) {
-            array_push($cityBosses, array(name => $user->display_name));
+            array_push($cityBosses, array(name => $user->display_name, login => $user->user_login));
         }
 
         return array(
@@ -41,6 +41,24 @@ function buildCityResponseObject($city)
                 "bosses" => $cityBosses
             )
         );
+    }
+}
+
+function buildBossResponseObject($boss)
+{
+    $isCityBoss = $boss->caps[city_boss];
+    error_log(print_r($isCityBoss, true));
+
+    if($isCityBoss) {
+        return array(
+            id => $boss->ID,
+            raw => $boss,
+            _links => array(
+                "self" => "/nn-api/bosses/$boss->ID"
+            )
+        );
+    } else {
+        return null;
     }
 }
 
@@ -67,6 +85,26 @@ if ($requestParts[0] == "cities" && count($requestParts) == 1) {
     $city = get_blog_details($requestParts[1]);
     if ($city != null) {
         echo json_encode([bosses => buildCityResponseObject($city)[_embedded][bosses]]);
+    } else {
+        http_response_code(404);
+    }
+} else if ($requestParts[0] == "bosses" && count($requestParts) == 1) {
+    $bosses = get_users();
+    $bossList = array();
+    foreach ($bosses as $boss) {
+        $responseObject = buildBossResponseObject($boss);
+        if ($responseObject != null) {
+            array_push($bossList, $responseObject);
+        }
+    }
+
+    echo json_encode([bosses => $bossList]);
+} else if ($requestParts[0] == "bosses" && count($requestParts) == 2) {
+    $user = get_user_by('id', $requestParts[1]);
+    $user = buildBossResponseObject($user);
+
+    if ($user) {
+        echo json_encode([user => $user]);
     } else {
         http_response_code(404);
     }
